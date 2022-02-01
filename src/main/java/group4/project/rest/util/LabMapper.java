@@ -1,5 +1,6 @@
 package group4.project.rest.util;
 
+import group4.project.rest.entity.UserProfileDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -18,6 +19,8 @@ public interface LabMapper {
     UserDTO getRegisterDto(User user);
     @Mapping(target = "authorities", expression = "java(user.getAuthorities().stream().map(auth -> auth.getName().name()).collect(Collectors.toList()))")
     UserAuthDTO getUserAuthDTO(User user);
+
+    UserProfileDTO getUserDTO(User user);
 //    UserDTO getUserDTO(User user);
 //    AuthorityDTO getAuthorityDTO(Authority authority);
 //    List<UserAuthDTO> getUserAuthDTO(List<User> user);
