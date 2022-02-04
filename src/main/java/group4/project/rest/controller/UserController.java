@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -23,10 +24,16 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}/sell")
-    public ResponseEntity<?> sellCoin(@PathVariable("id") Long id){
+    public ResponseEntity<?> sellCoin(@PathVariable("id") Long id, @RequestParam Double price){
         User user = userRepository.findById(id).get();
-        user.setCoin(user.getCoin()-1);
-        final User updateCoins = userRepository.save(user);
-        return ResponseEntity.ok(updateCoins);
+        if (user.getCoin() <= 5){
+            //throw "cannot sell" here
+        }else {
+            user.setCoin(user.getCoin()-1);
+            user.setBalance(user.getBalance()+price);
+            userRepository.save(user);
+        }
+
+        return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(user));
     }
 }
