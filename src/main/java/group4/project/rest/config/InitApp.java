@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Random;
 
 @Component
 public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
@@ -34,9 +35,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         addUser();
+        Random rand = new Random();
         CamtCoin camtCoin;
+        int amountStudent = userRepository.findAll().size();
         camtCoin = camtCoinRepository.save(CamtCoin.builder()
-                .coinPerDay(3).build());
+                .coinPerDay(rand.nextInt(amountStudent)+1).build());
     }
 
     User user1, user2, user3;
