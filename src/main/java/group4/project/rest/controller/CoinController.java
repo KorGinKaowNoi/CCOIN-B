@@ -22,9 +22,9 @@ public class CoinController {
     public ResponseEntity<?> genCoin(){
         Random rand = new Random();
         Integer amountStudent = userRepository.findAll().size();
-        camtCoinRepository.deleteAll();
-        CamtCoin number = camtCoinRepository.save(CamtCoin.builder()
-                .coinPerDay(rand.nextInt(amountStudent)+1).build());
+        CamtCoin number = camtCoinRepository.getById(1L);
+        number.setCoinPerDay(rand.nextInt(amountStudent)+1);
+        camtCoinRepository.save(number);
         return ResponseEntity.ok(number.getCoinPerDay());
 
     }
