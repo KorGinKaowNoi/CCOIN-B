@@ -28,4 +28,10 @@ public class CoinController {
         return ResponseEntity.ok(number.getCoinPerDay());
 
     }
+
+    @GetMapping("/coin/amount")
+    public ResponseEntity<?> checkCoin(){
+        Integer number = camtCoinRepository.getById(1L).getCoinPerDay();
+        return ResponseEntity.ok(number);
+    }
 }

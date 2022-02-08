@@ -69,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/coin/generate").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/{id}/sell").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/{id}/buy").permitAll()
-
+                .antMatchers(HttpMethod.GET,"/coin/amount").permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filter
