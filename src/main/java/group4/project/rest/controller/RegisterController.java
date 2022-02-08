@@ -36,7 +36,7 @@ public class RegisterController {
 //            user.getImageUrl().add(user.getImageUrl().get(0));
             String password = encoder.encode(user.getPassword());
             user.setPassword(password);
-            user.setBalance(50.0);
+            user.setBalance(60.0);
             user.setEnabled(true);
             user.setCoin(0);
             user.getAuthorities().add(authorityRepository.findById(1L).get());
