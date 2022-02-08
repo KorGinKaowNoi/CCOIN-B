@@ -30,7 +30,6 @@ public class UserController {
     public ResponseEntity<?> sellCoin(@PathVariable("id") Long id, @RequestBody StudentSellCoinDTO seller){
         User user = userRepository.findById(id).get();
         if (user.getCoin() <= 5){
-//            return ResponseEntity.ok(false);
             return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(user));
         }else {
             user.setCoin(user.getCoin()-seller.getCoin());
