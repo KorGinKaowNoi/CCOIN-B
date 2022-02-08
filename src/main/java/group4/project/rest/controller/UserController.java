@@ -37,7 +37,7 @@ public class UserController {
         return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(user));
     }
 
-    @PutMapping("/user/{id}/buy")
+    @PostMapping("/user/{id}/buy")
     public ResponseEntity<?> buyCoin(@PathVariable("id") Long id, @RequestBody StudentBuyCoinDTO buyer){
         User user = userRepository.findById(id).get();
         Double price = buyer.getAmount()*10.0;
